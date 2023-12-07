@@ -2,5 +2,5 @@
 """Add Module"""
 
 def add(a: float, b: float):
-    """Returns the sum of a and b"""
+    """Returns the sum of args a and b"""
     return a + b
