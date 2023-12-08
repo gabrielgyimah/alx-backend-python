@@ -1,6 +1,5 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """Sum List Module"""
-
 
 from typing import List
 

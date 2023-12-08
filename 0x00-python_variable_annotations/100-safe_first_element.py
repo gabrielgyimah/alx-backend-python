@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """safe_first_element Module"""
 from typing import Optional, Any
 
