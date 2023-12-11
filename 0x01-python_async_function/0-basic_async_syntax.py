@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Wait Random Module"""
+"""ASYNC IO Module."""
 import asyncio
 import random
 
 
 async def wait_random(max_delay: int = 10) -> float:
-    """Returns a random value between 0 and max delay"""
+    """Wait for a randow second and return the value."""
     wait_time = random.uniform(0, max_delay)
-    await asyncio.sleep(value)
+    await asyncio.sleep(wait_time)
     return wait_time
