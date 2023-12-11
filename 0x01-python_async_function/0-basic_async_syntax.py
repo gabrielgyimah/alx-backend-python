@@ -3,7 +3,6 @@
 
 import asyncio
 import random
-from unittest import async_case
 
 
 async def wait_random(max_delay=10):
