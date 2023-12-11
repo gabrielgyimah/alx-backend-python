@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """Floor Module"""
 
 import math
@@ -6,4 +6,4 @@ import math
 
 def floor(n: float) -> int:
     """Returns the floor of a"""
-    return(math.floor(n))
+    return (math.floor(n))
