@@ -8,7 +8,7 @@ from unittest.mock import patch
 
 
 class TestAccessNestedMap(unittest.TestCase):
-    """Implement all unittest cases for access_nested_map function in utils."""
+    """All unittest cases for access_nested_map function in the utils module"""
 
     @parameterized.expand([
             ({"a": 1}, ("a",), 1),
@@ -17,7 +17,7 @@ class TestAccessNestedMap(unittest.TestCase):
             ])
     def test_access_nested_map(self, nested_map: Mapping,
                                path: Sequence, expected):
-        """Test if access nested map return the rightful output."""
+        """Testd if access nested map return the rightful output"""
         self.assertEqual(access_nested_map(nested_map, path), expected)
 
     @parameterized.expand([
@@ -26,13 +26,13 @@ class TestAccessNestedMap(unittest.TestCase):
         ])
     def test_access_nested_map_exception(self, nested_map: Mapping,
                                          path: Sequence):
-        """Check if exception is being raise if wrong argument are pass."""
+        """Tests if exception is being raised for the wrong argument"""
         with self.assertRaises(KeyError):
             access_nested_map(nested_map, path)
 
 
 class TestGetJson(unittest.TestCase):
-    """Implement all unittest cases for get_json function in utils."""
+    """All unittest cases for get_json function in the utils module"""
 
     @parameterized.expand([
         ('http://example.com', {"payload": True}),
@@ -40,15 +40,15 @@ class TestGetJson(unittest.TestCase):
         ])
     @patch('utils.requests')
     def test_get_json(self, test_url: str, test_payload: Mapping, mock_req):
-        """Test if get_json returns the rightful output."""
+        """Test if get_json returns the rightful output"""
         mock_req.get.return_value.json.return_value = test_payload
         self.assertEqual(get_json(test_url), test_payload)
 
 
 class TestMemoize(unittest.TestCase):
-    """Implement all unittest cases for memoize function in utils."""
+    """All unittest cases for memoize function in utils module"""
     def test_memoize(self):
-        """Check if a_method is memoized."""
+        """Check if a method is memoized"""
         class TestClass:
 
             def a_method(self):

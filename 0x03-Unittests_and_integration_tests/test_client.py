@@ -9,7 +9,7 @@ from fixtures import TEST_PAYLOAD
 
 
 class TestGithubOrgClient(unittest.TestCase):
-    """Implement all test cases for org function from the client script."""
+    """All test cases the client script."""
 
     @parameterized.expand([
         'google',
@@ -17,7 +17,7 @@ class TestGithubOrgClient(unittest.TestCase):
         ])
     @patch('client.get_json')
     def test_org(self, org: str, mock_get_json):
-        """Test if org method from GithubOrgClient return the right output."""
+        """Test if org the method from GithubOrgClient returns the right output."""
         expect = {
                 "repo_url": f"https://api.github.com/orgs/{org}"
                 }
@@ -26,7 +26,7 @@ class TestGithubOrgClient(unittest.TestCase):
         self.assertEqual(git_org.org, expect)
 
     def test_public_repos_url(self):
-        """Test if org method from GithubOrgClient return the right output."""
+        """Test if org the method from GithubOrgClient return the right output."""
         with patch.object(GithubOrgClient,
                           '_public_repos_url') as mock_public_repos_url:
             expect = 'https://api.github.com/orgs/google/repos'
@@ -36,7 +36,7 @@ class TestGithubOrgClient(unittest.TestCase):
 
     @patch('client.get_json')
     def test_public_repos(self, mock_get_json):
-        """Test if org method from GithubOrgClient return the right output."""
+        """Test if the org method from GithubOrgClient return the right output"""
         for org in ['google', 'abc']:
             expect = {
                     "repo_url": f"https://api.github.com/orgs/{org}"
@@ -56,7 +56,7 @@ class TestGithubOrgClient(unittest.TestCase):
         ])
     def test_has_license(self, repo: Dict[str, Dict],
                          license_key: str, expect: bool):
-        """Test if org method from GithubOrgClient return the right output."""
+        """Test if the org method from GithubOrgClient return the right output"""
         git_org = GithubOrgClient('google')
         self.assertEqual(git_org.has_license(repo, license_key), expect)
 
@@ -64,11 +64,11 @@ class TestGithubOrgClient(unittest.TestCase):
 @parameterized_class(('org_payload', 'repos_payload',
                       'expected_repos', 'apache2_repos'), TEST_PAYLOAD)
 class TestIntegrationGithubOrgClient(unittest.TestCase):
-    """Implement integration test for Github Org Client."""
+    """Integration tests for Github Org Client"""
 
     @classmethod
     def setUpClass(cls):
-        """Set the env for each test."""
+        """This sets the env for each test"""
         cls.get_patcher = patch('requests.get')
         cls.mock_get = cls.get_patcher.start()
         cls.mock_get.return_value.json.side_effect = [
@@ -78,11 +78,11 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        """Tear down the env after each test."""
+        """Tear down"""
         cls.get_patcher.stop()
 
     def test_public_repos(self):
-        """Test if org method from GithubOrgClient return the right output."""
+        """Test if the org method from GithubOrgClient return the right output."""
         client = GithubOrgClient('google')
         repos = client.public_repos()
         self.assertEqual(len(repos), len(self.expected_repos))
@@ -90,7 +90,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
             self.assertIn(repo, self.expected_repos)
 
     def test_public_repos_with_license(self):
-        """Test if org method from GithubOrgClient return the right output."""
+        """Test if the org method from GithubOrgClient return the right output"""
         client = GithubOrgClient('google')
         repos = client.public_repos("apache-2.0")
         self.assertEqual(len(repos), len(self.apache2_repos))
